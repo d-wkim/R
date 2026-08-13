@@ -60,5 +60,5 @@ df = c("ikdc_subjective",
        )
 
 
-lapply(df, DKIM_NMA)
+lapply(df, network_meta_analysis)
 ```
