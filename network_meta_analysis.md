@@ -26,7 +26,8 @@ network_meta_analysis <- function(df) {
 
 	# print and save network meta-analysis results
 	sink(file = txt)
-	print(m.netmeta)
+	analysis <- decomp.design(m.netmeta)
+	print(analysis)
 	sink()
 
 	labels = m.netmeta$trts
