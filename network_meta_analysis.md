@@ -41,8 +41,8 @@ network_meta_analysis <- function(df) {
 	network_graph = netgraph(m.netmeta, labels = labels, dim = "2d", scale = 1.1)
 	print(network_graph)
 	dev.off()
-	
-  return(m.netmeta)	
+
+	return(m.netmeta)	
 	
 }
 ```
