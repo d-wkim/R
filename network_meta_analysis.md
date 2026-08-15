@@ -1,6 +1,7 @@
 Custom R function for running **network meta-analysis**
 
 ```R
+
 network_meta_analysis <- function(df) {
   
   data_path <- paste0("G:/My Drive/github/d-wkim/network_meta-analysis/3_meta-analysis/R/analysis/sheets_for_analysis/",df, ".csv")
@@ -25,15 +26,15 @@ network_meta_analysis <- function(df) {
 	txt = paste0("G:/My Drive/github/d-wkim/network_meta-analysis/3_meta-analysis/R/analysis/results/",df, ".txt")
 
 	# print and save network meta-analysis results
+	
 	sink(file = txt)
-	analysis <- decomp.design(m.netmeta)
-	print(analysis)
+	print(m.netmeta)
 	sink()
 
 	labels = m.netmeta$trts
 	long.labels = c("Bone-patellar tendon-bone", "Hamstring", "Peroneus longus", "Quadriceps", "Tibialis anterior")
 
-	svg = paste0("G:/My Drive/github/d-wkim/network_meta-analysis/3_meta-analysis/R/plots/network_graph/", df, ".svg")
+	svg = paste0("G:/My Drive/github/d-wkim/network_meta-analysis/3_meta-analysis/R/analysis/plots/netgraph/", df, ".svg")
 
 	svg(file = svg, height = 5, width = 5)
 
