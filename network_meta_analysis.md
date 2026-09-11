@@ -1,4 +1,7 @@
-**Set up**: Install packages and load libraries.
+> [!NOTE]
+> **Remember**: goal is to create ***universally*** usable scripts across future projects, not just this one.
+
+Step 1. **Set up**: Install packages and load libraries.
 
 ```R
 
@@ -18,14 +21,13 @@ lapply(packages, library, character.only = TRUE)
 
 ```
 
-Custom R function for running **network meta-analysis**.
+Step 2: Custom R function for running **network meta-analysis**.
 
 ```R
 
-network_meta_analysis <- function(df, sm = "", reference = "") {
+network_meta_analysis <- function(data_dir, df, sm = "", reference = "") {
   
-  data_path <- paste0("G:/My Drive/github/d-wkim/network_meta-analysis/3_meta-analysis/R/analysis/",df, ".csv")
-  
+  data_path <- paste0(data_dir, df, ".csv")  
   data <- read_csv(data_path)
   
   m.netmeta <- netmeta(
