@@ -29,6 +29,7 @@ network_meta_analysis <- function(data_dir, df, sm = "", reference = "") {
   
   data_path <- paste0(data_dir, df, ".csv")  
   data <- read_csv(data_path)
+  reference = paste0(reference)
   
   m.netmeta <- netmeta(
 		TE = smd, 
@@ -40,7 +41,7 @@ network_meta_analysis <- function(data_dir, df, sm = "", reference = "") {
 		sm = paste0(sm),
 		common = FALSE, 
 		random = TRUE,
-		reference.group = "BPTB",
+		reference.group = reference,
 		details.chkmultiarm = TRUE,
 		sep.trts = " vs "
 	)
@@ -79,6 +80,129 @@ network_meta_analysis <- function(data_dir, df, sm = "", reference = "") {
 }
 
 ```
+
+Function applied ***without*** using lapply.
+
+1. **IKDC subjective**
+
+```R
+
+# ikdc_subjective (k = 26 studies, 5 comparison groups, d.f. = 26 - 5 +1 = 22)
+sink(file = "./ikdc_subjective.BPTB.txt")
+print(ikdc_subjective.BPTB <- nma("ikdc_subjective", "SMD", reference = "BPTB"))
+sink()
+
+sink(file = "./ikdc_subjective.HT.txt")
+print(ikdc_subjective.HT <- nma("ikdc_subjective", "SMD", reference = "HT"))
+sink()
+
+sink(file = "./ikdc_subjective.QT.txt")
+print(ikdc_subjective.QT <- nma("ikdc_subjective", "SMD", reference = "QT"))
+sink()
+
+sink(file = "./ikdc_subjective.PLT.txt")
+print(ikdc_subjective.PLT <- nma("ikdc_subjective", "SMD", reference = "PLT"))
+sink()
+
+#print(ikdc_subjective.AT <- nma("ikdc_subjective", "SMD", reference = "AT"))
+
+sink(file = "./ikdc_subjective.TA.txt")
+print(ikdc_subjective.TA <- nma("ikdc_subjective", "SMD", reference = "TA"))
+sink()
+
+```
+
+2. **Lysholm**
+
+```R
+
+# lysholm (k = 26 studies, 5 comparison groups, d.f. = 26 - 5 +1 = 22
+
+sink(file = "./lysholm.BPTB.txt")
+print(lysholm.BPTB <- nma("lysholm", "SMD", reference = "BPTB"))
+sink()
+
+sink(file = "./lysholm.HT.txt")
+print(lysholm.HT <- nma("lysholm", "SMD", reference = "HT"))
+sink()
+
+sink(file = "./lysholm.QT.txt")
+print(lysholm.QT <- nma("lysholm", "SMD", reference = "QT"))
+sink()
+
+sink(file = "./lysholm.PLT.txt")
+print(lysholm.PLT <- nma("lysholm", "SMD", reference = "PLT"))
+sink()
+
+sink(file = "./lysholm.AT.txt")
+print(lysholm.AT <- nma("lysholm", "SMD", reference = "AT"))
+sink()
+
+sink(file = "./lysholm.TA.txt")
+print(lysholm.TA <- nma("lysholm", "SMD", reference = "TA"))
+sink()
+```
+
+3. **Tegner**
+
+```R
+
+sink(file = "./tegner.BPTB.txt")
+print(tegner.BPTB <- nma("tegner", "SMD", reference = "BPTB"))
+sink()
+
+sink(file = "./tegner.HT.txt")
+print(tegner.HT <- nma("tegner", "SMD", reference = "HT"))
+sink()
+
+sink(file = "./tegner.QT.txt")
+print(tegner.QT <- nma("tegner", "SMD", reference = "QT"))
+sink()
+
+sink(file = "./tegner.PLT.txt")
+print(tegner.PLT <- nma("tegner", "SMD", reference = "PLT"))
+sink()
+
+#sink(file = "./tegner.AT.txt")
+#print(tegner.AT <- nma("tegner", "SMD", reference = "AT"))
+#sink()
+
+sink(file = "./tegner.TA.txt")
+print(tegner.TA <- nma("tegner", "SMD", reference = "TA"))
+sink()
+```
+
+4. **Instrumented laxity**
+
+```R
+
+sink(file = "./instrumented_laxity.BPTB.txt")
+print(instrumented_laxity.BPTB <- nma("instrumented_laxity", "SMD", reference = "BPTB"))
+sink()
+
+sink(file = "./instrumented_laxity.HT.txt")
+print(instrumented_laxity.HT <- nma("instrumented_laxity", "SMD", reference = "HT"))
+sink()
+
+sink(file = "./instrumented_laxity.QT.txt")
+print(instrumented_laxity.QT <- nma("instrumented_laxity", "SMD", reference = "QT"))
+sink()
+
+sink(file = "./instrumented_laxity.PLT.txt")
+print(instrumented_laxity.PLT <- nma("instrumented_laxity", "SMD", reference = "PLT"))
+sink()
+
+#sink(file = "./instrumented_laxity.AT.txt")
+#print(instrumented_laxity.AT <- nma("instrumented_laxity", "SMD", reference = "AT"))
+#sink()
+
+sink(file = "./instrumented_laxity.TA.txt")
+print(instrumented_laxity.TA <- nma("instrumented_laxity", "SMD", reference = "TA"))
+sink()
+
+```
+
+<!-- must figure out how to use lapply ***using two arguments as vector lists***--->
 
 **Function applied** to a vector list of dataset.
 
