@@ -2,29 +2,18 @@
 
 ```R
 
+wd <- getwd()
+setwd(wd)
 
-setwd("G:/My Drive/github/d-wkim/network_meta-analysis/")
+data_path <- paste0(wd,"data/")
+analysis_path <- paste0(wd,"analysis/")
+plot_path <- paste0(wd,"plots/")
 
 packages <- c(
-  "googledrive",
-  "googlesheets4",
-  "readxl",
-  "metafor",
-  "dplyr",
-  "meta",
-  "ggplot2",
-  "ggpubr",
-  "ggplotify",
-  "ggplot2",
-  "tidyverse",
-  "devtools",
-  "netmeta",
-  "rgl"
+	"netmeta"
 )
 
-
-#install.packages(packages, dependencies = TRUE)
-
+install.packages(packages, dependencies = TRUE)
 lapply(packages, library, character.only = TRUE)
 
 ```
@@ -33,7 +22,7 @@ Custom R function for running **network meta-analysis**.
 
 ```R
 
-network_meta_analysis <- function(df, sm = "") {
+network_meta_analysis <- function(df, sm = "", reference = "") {
   
   data_path <- paste0("G:/My Drive/github/d-wkim/network_meta-analysis/3_meta-analysis/R/analysis/",df, ".csv")
   
