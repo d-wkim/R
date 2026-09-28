@@ -21,8 +21,30 @@ lapply(packages, library, character.only = TRUE)
 
 ```
 
-Step 2: Custom R function for running **network meta-analysis**.
+Step 2: Custom R function for **single-arm meta-analysis**
 
+```R
+meta_analysis <- function(df) {
+  
+  # meta-analysis
+  data_path <- paste0("./data/extracted/csv/", df, ".csv")
+  data <- read.csv(data_path)
+
+  # calculation of effect size estimate 
+  ies <- escalc(measure = "MN", 
+               # n1i = n1, n2i = n2, m1i = y1, m2i = y2, sd1i = sd1, sd2i = sd2, 
+               data = data, slab = study,
+               ni = ni, mi = yi, sdi = sdi)
+    
+  sink(paste0("./data/results/", df, ".txt"))
+  m.mean <- metamean(n = ni, mean = yi, sd = sdi, studlab = study, data = data,
+                     sm = "MRAW", common = FALSE, random = TRUE, tau.common = FALSE,
+                     method.tau = "REML", method.random.ci = "HK", subgroup = subgroup)
+  print(summary(m.mean))
+  sink()
+```
+
+Step 3: Custom R function for running **network meta-analysis**.
 ```R
 
 network_meta_analysis <- function(data_dir, df, sm = "", reference = "") {
